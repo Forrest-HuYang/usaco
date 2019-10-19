@@ -32,15 +32,12 @@ def transform_main(flines):
     original_square = np.array(original_square)
     new_square = np.array(new_square)
 
+    judgement(original_square,new_square)
     a = judgement(original_square,new_square)
     if type(a) == int:
-        if a == 3:
-            m = ninety_degrees(ninety_degrees(ninety_degrees(original_square))) == ninety_degrees(original_square)
-            if m.all:
-                return 1
         return a
 
-    mirror = np.fliplr(original_square)
+    mirror = flip(original_square)
     x = (mirror == new_square)
     if x.all():
         return 4
@@ -55,18 +52,25 @@ def transform_main(flines):
 
     return 7
 
+def flip(array):
+    temp = np.zeros_like(array)
+    for i in range(len(array)):
+        for j in range(len(array)):
+            temp[i][j] = array[i][len(array)-1-j]
+    return temp
+
 def judgement(original_square,new_square):
     for i in range(3):
         original_square = ninety_degrees(original_square)
         a = (original_square == new_square)
         if a.all():
-            return 3-i
+            return i+1
 
 def ninety_degrees(array):
-    temp = np.zeros_like(array.transpose())
+    temp = np.zeros_like(array)
     for j in range(len(array)):
-        for i in range(len(array[0])):
-            temp[i][j] = array[j][len(array[0])-i-1]
+        for i in range(len(array)):
+            temp[i][j] = array[len(array[0])-j-1][i]
     return temp
 
 
