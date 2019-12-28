@@ -61,7 +61,11 @@ def get_possible_digits(N,number):
         m = [number-2,number-1,number,number+1,number+2]
         return m
     if number > N - 2:
+<<<<<<< HEAD
         if number = N -1:
+=======
+        if number == N -1:
+>>>>>>> d2d621fa94e62c79dd4e0b817944d3323b8e128f
             return [N-3,N-2,N-1,N,1]
         else:
             return [N-2,N-1,N,1,2]

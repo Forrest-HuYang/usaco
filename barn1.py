@@ -10,6 +10,7 @@ def read_in(infile):
             a.append(line.rstrip())
     return a
 
+<<<<<<< HEAD
 def main(filein):
     no_demands = int(filein[0])
     demand_raw = filein[1].split(' ')
@@ -24,6 +25,10 @@ def find_neighbour(name,demand_list):
             return fa
         
     demand_list
+=======
+def barn1_main(filein):
+    plan = filein[0].split(' ')
+>>>>>>> d2d621fa94e62c79dd4e0b817944d3323b8e128f
     quantity = int(plan[0])
     total_length = int(plan[1])
     tbd = int(plan[2])
@@ -54,4 +59,8 @@ def write_out(outfile,outstring):
     fout = open (outfile, 'w')
     fout.write(str(outstring)+'\n')
 
+<<<<<<< HEAD
 write_out('barn1.out',barn1_main(read_in('barn1.in')))
+=======
+write_out('barn1.out',barn1_main(read_in('barn1.in')))
+>>>>>>> d2d621fa94e62c79dd4e0b817944d3323b8e128f

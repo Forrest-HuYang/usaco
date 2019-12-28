@@ -15,16 +15,14 @@ def solve(x,y,next_on_right,N,partner):
         else:
             return 0
 
-    if i < N :
-        for j in range(i+1,N+1):
-            if partner[j] == 0:
-                partner[i],partner[j] = j,i
-                total += solve(x,y,next_on_right,N,partner)
-                partner[i] = 0 
-                partner[j] = 0
-        print(partner)
-        print(total)
-
+    for j in range(i+1,N+1):
+        if partner[j] == 0:
+            partner[i],partner[j] = j,i
+            total += solve(x,y,next_on_right,N,partner)
+            partner[i] = 0 
+            partner[j] = 0
+    print(partner)
+    print(total)
     return total
     
 
