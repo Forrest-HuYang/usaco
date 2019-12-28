@@ -1,0 +1,32 @@
+def read_in(infile):
+    a = []
+    with open(infile) as filename:
+        for line in filename:
+            a.append(line.rstrip())
+    return a
+
+def main(filein):
+    no_box = int(filein[0])
+    boxes = filein[a]
+    return test()
+
+def test():
+    for i in range(len(a)):
+        m = ''
+        f = list(a)
+        for j in range(i):
+            m += a[j]
+            del f[0]
+        for k in range len(f):
+            new += f[k]
+        if not m in new:
+            return i+1
+        
+    
+    
+        
+def find_neighbour(name,demand_list):
+    for i in range(len(demand_list)):
+        if name in demand_list[i]:
+            return fa
+        

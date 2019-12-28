@@ -19,7 +19,7 @@ for i in range(num_cows):
     total.append(m)
     m = []
 time = []
-
+print(total)
 def is_sorted(record):
     for i in range(len(record)-1):
         b1 = record[i+1][0]
@@ -44,7 +44,7 @@ while is_sorted(total) == False:
     if time[0]==[0,0]:
         del time[0]
     total = time
-
+print(time)
 no_cows = 0
 for i in range(len(total)-1):
     x = total[i+1][0] - total[i][1]

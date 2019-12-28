@@ -32,6 +32,7 @@ for i in range(no_months):
 for i in range(no_months - 1):
     index_13.append((index_13[i] + no_days_inamonth[i]) % 7)
 result = Counter(index_13)
+print(result)
 fout = open ('friday.out', 'w')
 m = str(result[6]) + ' ' + str(result[0])  +' '+ str(result[1]) +' '+ str(result[2]) +' '+ str(result[3]) +' '+ str(result[4]) +' '+ str(result[5]) +'\n'
 fout.write(m)
