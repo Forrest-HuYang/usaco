@@ -1,6 +1,6 @@
 """
 ID: tony_hu1
-PROG: milk2
+PROG: numtri
 LANG: PYTHON3
 """
 
