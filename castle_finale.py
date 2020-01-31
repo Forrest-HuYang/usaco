@@ -1,3 +1,8 @@
+"""
+ID: tony_hu1
+PROG: castle
+LANG: PYTHON3
+"""
 components = []
 walls = dict()
 total = []
@@ -19,6 +24,11 @@ def read_in(infile):
     return a
 
 def main(filein):
+    global ns_length
+    global ew_length
+    global max_combined_area
+    global m_number
+    global m_direction
     ew_length = int(filein[0].split(' ')[0])
     ns_length = int(filein[0].split(' ')[1])
     area = ew_length*ns_length
@@ -56,9 +66,12 @@ def main(filein):
     for m in range(1,num_rooms+1):
         room_area.append(components.count(m))
     max_area = max(room_area)
-    find_largest_possible(0,ns_length,ew_length)
-    print('shit')
-    print(components)
+    find_largest_possible(ew_length*(ns_length-1),ns_length,ew_length)
+
+    largest_combined = max_combined_area
+    wall_num = str(ns_length+1-m_number[1]) + ' '+str(m_number[0]) + ' ' +m_direction.swapcase()
+    outstring = str(num_rooms) + '\n' + str(max_area) + '\n' + str(largest_combined) + '\n' + wall_num
+    return outstring
 
 
 def find_largest_possible(current,ns_length,ew_length):
@@ -73,6 +86,23 @@ def find_largest_possible(current,ns_length,ew_length):
 
     if current == ns_length*ew_length-1:
         return
+    
+    if current - ew_length >= 0:
+        if (not temp['n']) or components[current-ew_length] == current_component:
+            find_largest_possible(current - ew_length,ns_length,ew_length)
+        else:
+            next_room = current - ew_length
+            combined_area = room_area[current_component] + room_area[components[next_room]]
+            if combined_area > max_combined_area:
+                max_combined_area = combined_area
+                m_number = get_coordinates(current)
+                m_direction = 'n'
+            elif combined_area == max_combined_area:
+                new = get_coordinates(current)
+                if new < m_number:
+                    m_number = new
+                    m_direction = 'n'
+            find_largest_possible(next_room,ns_length,ew_length)
 
     a = (current+1) % ew_length
     if not a == 0:
@@ -83,27 +113,30 @@ def find_largest_possible(current,ns_length,ew_length):
             combined_area = room_area[current_component] + room_area[components[next_room]]
             if combined_area > max_combined_area:
                 max_combined_area = combined_area
-                m_number = current
+                m_number = get_coordinates(current)
                 m_direction = 'e'
+            elif combined_area == max_combined_area:
+                new = get_coordinates(current)
+                if new < m_number:
+                    m_number = new
+                    m_direction = 'e'
             find_largest_possible(next_room,ns_length,ew_length)
 
-    if current != (ns_length-1)*ew_length and current + ew_length < ns_length*ew_length-1:
-        if (not temp['s']) or components[current+ew_length] == current_component:
-            find_largest_possible(current + ew_length,ns_length,ew_length)
-        else:
-            next_room = current + ew_length
-            combined_area = room_area[current_component] + room_area[components[next_room]]
-            next_room = current + ew_length
-            room_area[current_component] + room_area[components[next_room]]
-            if combined_area > max_combined_area:
-                max_combined_area = combined_area
-                m_number = current
-                m_direction = 's'
-            find_largest_possible(next_room,ns_length,ew_length)
+
     
     return
 
-        
+def get_coordinates(number):
+    global ew_length
+    global ns_length
+    number += 1
+    x = number%ew_length
+    if x == 0:
+        x = ew_length
+
+    y = (number - x) // ew_length
+    y = ns_length-y
+    return x,y
 
 def flood(current_component,ns_length,ew_length):
     visited = 1
