@@ -9,15 +9,6 @@ rooms = []
 m = 0
 room_area = []
 
-class Room:
-    def __init__(self):
-        self.room = 0
-        self.wall = 0
-        self.numbered = False
-
-    
-
-
 def read_in(infile):
     a = []
     with open(infile) as filename:
@@ -129,3 +120,5 @@ def write_out(outfile,outstring):
     fout.write(str(outstring)+'\n')
 
 write_out('castle.out',main(read_in('castle.in')))
+
+
