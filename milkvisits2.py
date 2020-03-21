@@ -127,6 +127,7 @@ already_done = set()
 group = dict()
 h_index = 0
 g_index = 0
+status = []
 for i in range(1,len(cows)+1):
     type_cows[i] = cows[i-1]
 
@@ -140,6 +141,8 @@ for k in range(no_farms+1,no_farms+1+no_friends):
     friends_route[k-no_farms] = [temp[0],temp[1]]
 
 tree(0,'N',g_index,h_index)
+for i in range(no_farms):
+    
 print(group)
 get_results()
 
